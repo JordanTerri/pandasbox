@@ -1,0 +1,99 @@
+INFO  [           main] 2015-04-21 15:27:28,801 | [Launcher.java:10] | bob is launched
+INFO  [           main] 2015-04-21 15:28:24,670 | [Launcher.java:10] | bob is launched
+INFO  [           main] 2015-04-21 15:55:35,745 | [Launcher.java:11] | ----------
+INFO  [           main] 2015-04-21 15:55:35,747 | [Launcher.java:12] | Launching Recorder Impl
+INFO  [           main] 2015-04-21 15:55:35,749 | [PandaRecorder.java:39] | initializing recorder impl.
+INFO  [           main] 2015-04-21 15:55:35,751 | [PandaRecorder.java:27] | recorder impl successfully initialized.
+INFO  [           main] 2015-04-21 15:55:35,751 | [PandaRecorder.java:34] | starting recorder impl.
+INFO  [           main] 2015-04-21 15:55:35,752 | [PandaRecorder.java:30] | recorder impl successfully started.
+INFO  [           main] 2015-04-21 15:59:11,604 | [Launcher.java:11] | ----------
+INFO  [           main] 2015-04-21 15:59:11,606 | [Launcher.java:12] | Launching Recorder Impl
+INFO  [           main] 2015-04-21 15:59:11,608 | [PandaRecorder.java:38] | initializing recorder impl.
+ERROR [           main] 2015-04-21 15:59:11,611 | [PandaRecorder.java:51] | Error creating sip provider.
+javax.sip.PeerUnavailableException: Missing javax.sip.STACK_NAME property
+	at javax.sip.SipFactory.createSipStack(SipFactory.java:144)
+	at org.pandaka.sip.PandaSipProvider.init(PandaSipProvider.java:44)
+	at org.pandaka.core.PandaRecorder.init(PandaRecorder.java:46)
+	at org.pandaka.core.PandaRecorder.start(PandaRecorder.java:26)
+	at org.pandaka.Launcher.main(Launcher.java:15)
+INFO  [           main] 2015-04-21 16:02:37,595 | [Launcher.java:11] | ----------
+INFO  [           main] 2015-04-21 16:02:37,597 | [Launcher.java:12] | Launching Recorder Impl
+INFO  [           main] 2015-04-21 16:02:37,598 | [PandaRecorder.java:38] | initializing recorder impl.
+INFO  [           main] 2015-04-21 16:02:37,630 | [CommonLoggerLog4j.java:236] | value -1000 will be used for reliableConnectionKeepAliveTimeout stack property
+INFO  [           main] 2015-04-21 16:02:37,631 | [CommonLoggerLog4j.java:236] | Setting Stack Thread priority to 10
+WARN  [           main] 2015-04-21 16:02:37,636 | [CommonLoggerLog4j.java:226] | using default tls security policy
+ERROR [           main] 2015-04-21 16:02:37,637 | [CommonLoggerLog4j.java:176] | thread pool size - bad value For input string: "false"
+WARN  [           main] 2015-04-21 16:02:37,640 | [CommonLoggerLog4j.java:226] | Using default keystore type jks
+WARN  [           main] 2015-04-21 16:02:37,640 | [CommonLoggerLog4j.java:226] | TLS server settings will be inactive - TLS key store will use JVM defaults keyStoreType=jks javax.net.ssl.keyStore=null javax.net.ssl.keyStorePassword=null
+INFO  [           main] 2015-04-21 16:02:37,641 | [CommonLoggerLog4j.java:236] | javax.net.ssl.trustStorePassword is null, using the password passed through javax.net.ssl.keyStorePassword
+WARN  [           main] 2015-04-21 16:02:37,641 | [CommonLoggerLog4j.java:226] | Using default truststore type jks
+WARN  [           main] 2015-04-21 16:02:37,642 | [CommonLoggerLog4j.java:226] | TLS trust settings will be inactive - TLS trust store will use JVM defaults. trustStoreType=jks javax.net.ssl.trustStore=null javax.net.ssl.trustStorePassword=null
+INFO  [           main] 2015-04-21 16:02:37,802 | [CommonLoggerLog4j.java:294] | Build timestamp: Date = 20140612 Time = 1016
+INFO  [           main] 2015-04-21 16:02:37,807 | [CommonLoggerLog4j.java:236] | the sip stack timer gov.nist.javax.sip.stack.timers.DefaultSipTimer has been started
+INFO  [           main] 2015-04-21 16:02:37,861 | [PandaRecorder.java:27] | recorder impl successfully initialized.
+INFO  [           main] 2015-04-21 16:02:37,861 | [PandaRecorder.java:34] | starting recorder impl.
+INFO  [           main] 2015-04-21 16:02:37,862 | [PandaRecorder.java:30] | recorder impl successfully started.
+INFO  [           main] 2015-04-21 16:02:57,355 | [Launcher.java:11] | ----------
+INFO  [           main] 2015-04-21 16:02:57,357 | [Launcher.java:12] | Launching Recorder Impl
+INFO  [           main] 2015-04-21 16:02:57,358 | [PandaRecorder.java:38] | initializing recorder impl.
+INFO  [           main] 2015-04-21 16:02:57,390 | [CommonLoggerLog4j.java:236] | value -1000 will be used for reliableConnectionKeepAliveTimeout stack property
+INFO  [           main] 2015-04-21 16:02:57,391 | [CommonLoggerLog4j.java:236] | Setting Stack Thread priority to 10
+WARN  [           main] 2015-04-21 16:02:57,396 | [CommonLoggerLog4j.java:226] | using default tls security policy
+WARN  [           main] 2015-04-21 16:02:57,399 | [CommonLoggerLog4j.java:226] | Using default keystore type jks
+WARN  [           main] 2015-04-21 16:02:57,399 | [CommonLoggerLog4j.java:226] | TLS server settings will be inactive - TLS key store will use JVM defaults keyStoreType=jks javax.net.ssl.keyStore=null javax.net.ssl.keyStorePassword=null
+INFO  [           main] 2015-04-21 16:02:57,400 | [CommonLoggerLog4j.java:236] | javax.net.ssl.trustStorePassword is null, using the password passed through javax.net.ssl.keyStorePassword
+WARN  [           main] 2015-04-21 16:02:57,400 | [CommonLoggerLog4j.java:226] | Using default truststore type jks
+WARN  [           main] 2015-04-21 16:02:57,401 | [CommonLoggerLog4j.java:226] | TLS trust settings will be inactive - TLS trust store will use JVM defaults. trustStoreType=jks javax.net.ssl.trustStore=null javax.net.ssl.trustStorePassword=null
+INFO  [           main] 2015-04-21 16:02:57,514 | [CommonLoggerLog4j.java:294] | Build timestamp: Date = 20140612 Time = 1016
+INFO  [           main] 2015-04-21 16:02:57,519 | [CommonLoggerLog4j.java:236] | the sip stack timer gov.nist.javax.sip.stack.timers.DefaultSipTimer has been started
+INFO  [           main] 2015-04-21 16:02:57,564 | [PandaRecorder.java:27] | recorder impl successfully initialized.
+INFO  [           main] 2015-04-21 16:02:57,564 | [PandaRecorder.java:34] | starting recorder impl.
+INFO  [           main] 2015-04-21 16:02:57,564 | [PandaRecorder.java:30] | recorder impl successfully started.
+INFO  [           main] 2015-04-21 16:51:09,175 | [Launcher.java:11] | ----------
+INFO  [           main] 2015-04-21 16:51:09,177 | [Launcher.java:12] | Launching Recorder Impl
+INFO  [           main] 2015-04-21 16:51:09,178 | [PandaRecorder.java:38] | initializing recorder impl.
+INFO  [           main] 2015-04-21 16:51:09,210 | [CommonLoggerLog4j.java:236] | value -1000 will be used for reliableConnectionKeepAliveTimeout stack property
+INFO  [           main] 2015-04-21 16:51:09,211 | [CommonLoggerLog4j.java:236] | Setting Stack Thread priority to 10
+WARN  [           main] 2015-04-21 16:51:09,216 | [CommonLoggerLog4j.java:226] | using default tls security policy
+WARN  [           main] 2015-04-21 16:51:09,219 | [CommonLoggerLog4j.java:226] | Using default keystore type jks
+WARN  [           main] 2015-04-21 16:51:09,220 | [CommonLoggerLog4j.java:226] | TLS server settings will be inactive - TLS key store will use JVM defaults keyStoreType=jks javax.net.ssl.keyStore=null javax.net.ssl.keyStorePassword=null
+INFO  [           main] 2015-04-21 16:51:09,220 | [CommonLoggerLog4j.java:236] | javax.net.ssl.trustStorePassword is null, using the password passed through javax.net.ssl.keyStorePassword
+WARN  [           main] 2015-04-21 16:51:09,221 | [CommonLoggerLog4j.java:226] | Using default truststore type jks
+WARN  [           main] 2015-04-21 16:51:09,221 | [CommonLoggerLog4j.java:226] | TLS trust settings will be inactive - TLS trust store will use JVM defaults. trustStoreType=jks javax.net.ssl.trustStore=null javax.net.ssl.trustStorePassword=null
+INFO  [           main] 2015-04-21 16:51:09,334 | [CommonLoggerLog4j.java:294] | Build timestamp: Date = 20140612 Time = 1016
+INFO  [           main] 2015-04-21 16:51:09,338 | [CommonLoggerLog4j.java:236] | the sip stack timer gov.nist.javax.sip.stack.timers.DefaultSipTimer has been started
+INFO  [           main] 2015-04-21 16:51:09,381 | [PandaRecorder.java:27] | recorder impl successfully initialized.
+INFO  [           main] 2015-04-21 16:51:09,381 | [PandaRecorder.java:34] | starting recorder impl.
+INFO  [           main] 2015-04-21 16:51:09,382 | [PandaRecorder.java:30] | recorder impl successfully started.
+INFO  [           main] 2015-04-22 17:25:40,788 | [Launcher.java:11] | ----------
+INFO  [           main] 2015-04-22 17:25:40,802 | [Launcher.java:12] | Launching Recorder Impl
+INFO  [           main] 2015-04-22 17:25:40,889 | [PandaRecorderApp.java:38] | initializing recorder impl.
+INFO  [           main] 2015-04-22 17:25:40,960 | [CommonLoggerLog4j.java:236] | value -1000 will be used for reliableConnectionKeepAliveTimeout stack property
+INFO  [           main] 2015-04-22 17:25:40,961 | [CommonLoggerLog4j.java:236] | Setting Stack Thread priority to 10
+WARN  [           main] 2015-04-22 17:25:40,966 | [CommonLoggerLog4j.java:226] | using default tls security policy
+WARN  [           main] 2015-04-22 17:25:40,973 | [CommonLoggerLog4j.java:226] | Using default keystore type jks
+WARN  [           main] 2015-04-22 17:25:40,973 | [CommonLoggerLog4j.java:226] | TLS server settings will be inactive - TLS key store will use JVM defaults keyStoreType=jks javax.net.ssl.keyStore=null javax.net.ssl.keyStorePassword=null
+INFO  [           main] 2015-04-22 17:25:40,974 | [CommonLoggerLog4j.java:236] | javax.net.ssl.trustStorePassword is null, using the password passed through javax.net.ssl.keyStorePassword
+WARN  [           main] 2015-04-22 17:25:40,974 | [CommonLoggerLog4j.java:226] | Using default truststore type jks
+WARN  [           main] 2015-04-22 17:25:40,975 | [CommonLoggerLog4j.java:226] | TLS trust settings will be inactive - TLS trust store will use JVM defaults. trustStoreType=jks javax.net.ssl.trustStore=null javax.net.ssl.trustStorePassword=null
+INFO  [           main] 2015-04-22 17:25:41,183 | [CommonLoggerLog4j.java:294] | Build timestamp: Date = 20140612 Time = 1016
+INFO  [           main] 2015-04-22 17:25:41,188 | [CommonLoggerLog4j.java:236] | the sip stack timer gov.nist.javax.sip.stack.timers.DefaultSipTimer has been started
+INFO  [           main] 2015-04-22 17:25:41,254 | [PandaRecorderApp.java:27] | recorder impl successfully initialized.
+INFO  [           main] 2015-04-22 17:25:41,254 | [PandaRecorderApp.java:34] | starting recorder impl.
+INFO  [           main] 2015-04-22 17:25:41,255 | [PandaRecorderApp.java:30] | recorder impl successfully started.
+INFO  [           main] 2015-04-23 15:24:12,951 | [Launcher.java:11] | ----------
+INFO  [           main] 2015-04-23 15:24:12,991 | [Launcher.java:12] | Launching Recorder Impl
+INFO  [           main] 2015-04-23 15:24:13,020 | [PandaRecorderApp.java:38] | initializing recorder impl.
+INFO  [           main] 2015-04-23 15:24:13,076 | [CommonLoggerLog4j.java:236] | value -1000 will be used for reliableConnectionKeepAliveTimeout stack property
+INFO  [           main] 2015-04-23 15:24:13,077 | [CommonLoggerLog4j.java:236] | Setting Stack Thread priority to 10
+WARN  [           main] 2015-04-23 15:24:13,082 | [CommonLoggerLog4j.java:226] | using default tls security policy
+WARN  [           main] 2015-04-23 15:24:13,112 | [CommonLoggerLog4j.java:226] | Using default keystore type jks
+WARN  [           main] 2015-04-23 15:24:13,113 | [CommonLoggerLog4j.java:226] | TLS server settings will be inactive - TLS key store will use JVM defaults keyStoreType=jks javax.net.ssl.keyStore=null javax.net.ssl.keyStorePassword=null
+INFO  [           main] 2015-04-23 15:24:13,113 | [CommonLoggerLog4j.java:236] | javax.net.ssl.trustStorePassword is null, using the password passed through javax.net.ssl.keyStorePassword
+WARN  [           main] 2015-04-23 15:24:13,114 | [CommonLoggerLog4j.java:226] | Using default truststore type jks
+WARN  [           main] 2015-04-23 15:24:13,114 | [CommonLoggerLog4j.java:226] | TLS trust settings will be inactive - TLS trust store will use JVM defaults. trustStoreType=jks javax.net.ssl.trustStore=null javax.net.ssl.trustStorePassword=null
+INFO  [           main] 2015-04-23 15:24:13,280 | [CommonLoggerLog4j.java:294] | Build timestamp: Date = 20140612 Time = 1016
+INFO  [           main] 2015-04-23 15:24:13,285 | [CommonLoggerLog4j.java:236] | the sip stack timer gov.nist.javax.sip.stack.timers.DefaultSipTimer has been started
+INFO  [           main] 2015-04-23 15:24:13,331 | [PandaRecorderApp.java:27] | recorder impl successfully initialized.
+INFO  [           main] 2015-04-23 15:24:13,331 | [PandaRecorderApp.java:34] | starting recorder impl.
+INFO  [           main] 2015-04-23 15:24:13,331 | [PandaRecorderApp.java:30] | recorder impl successfully started.
