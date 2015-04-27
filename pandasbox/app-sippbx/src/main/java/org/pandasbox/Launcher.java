@@ -9,8 +9,9 @@ public class Launcher {
 
 	public static void main(String[] args) {
 		logger.info("----------");
-		logger.info("Launching Recorder Impl");
+		logger.info("Launching Recorder Implementation");
 
+		//git test adding comment
 		PandaRecorderApp app = new PandaRecorderApp("configuration.properties");
 		app.start();
 	}
