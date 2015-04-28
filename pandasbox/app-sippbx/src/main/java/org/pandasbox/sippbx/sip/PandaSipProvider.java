@@ -1,4 +1,4 @@
-package org.pandasbox.sip;
+package org.pandasbox.sippbx.sip;
 
 import java.util.Properties;
 

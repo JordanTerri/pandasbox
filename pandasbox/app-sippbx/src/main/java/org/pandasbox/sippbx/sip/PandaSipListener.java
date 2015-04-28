@@ -1,4 +1,4 @@
-package org.pandasbox.sip;
+package org.pandasbox.sippbx.sip;
 
 import javax.sip.DialogTerminatedEvent;
 import javax.sip.IOExceptionEvent;

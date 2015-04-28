@@ -1,4 +1,4 @@
-package org.pandasbox.core;
+package org.pandasbox.sippbx.core;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,8 +7,8 @@ import java.util.Properties;
 import javax.sip.PeerUnavailableException;
 
 import org.apache.log4j.Logger;
-import org.pandasbox.sip.PandaSipProvider;
-import org.pandasbox.sip.PandaSipProviderHelper;
+import org.pandasbox.sippbx.sip.PandaSipProvider;
+import org.pandasbox.sippbx.sip.PandaSipProviderHelper;
 
 public class PandaRecorderApp {
 

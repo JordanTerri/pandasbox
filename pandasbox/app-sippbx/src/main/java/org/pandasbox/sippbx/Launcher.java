@@ -1,7 +1,7 @@
-package org.pandasbox;
+package org.pandasbox.sippbx;
 
 import org.apache.log4j.Logger;
-import org.pandasbox.core.PandaRecorderApp;
+import org.pandasbox.sippbx.core.PandaRecorderApp;
 
 public class Launcher {
 
