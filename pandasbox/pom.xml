@@ -14,7 +14,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<junit.version>3.8.1</junit.version>
-		<jain.version>r2311</jain.version>
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<log4j.version>1.2.14</log4j.version>
 		<apache-commons.version>1.3.2</apache-commons.version>
@@ -42,11 +41,6 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.etrali.frameworks.jain-sip</groupId>
-			<artifactId>jain-sip-sdp</artifactId>
-			<version>${jain.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>log4j</groupId>

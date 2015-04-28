@@ -37,5 +37,4 @@
       <attribute value="jar:file:/home/jto/.m2/repository/org/springframework/spring-expression/4.1.6.RELEASE/spring-expression-4.1.6.RELEASE-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/etrali/frameworks/jain-sip/jain-sip-sdp/r2311/jain-sip-sdp-r2311.jar"/>
 </classpath>

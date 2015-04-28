@@ -15,6 +15,11 @@
 
 	<name>panda-s-box sip-pbx module</name>
 	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<external.lib>${basedir}/ext-lib/</external.lib>
+		<jain-sip.version>1.2.2368</jain-sip.version>
+	</properties>
 
 	<dependencies>
 	
@@ -25,9 +30,11 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.etrali.frameworks.jain-sip</groupId>
+			<groupId>jain-sip</groupId>
 			<artifactId>jain-sip-sdp</artifactId>
+			<scope>system</scope>
 			<version>${jain.version}</version>
+			<systemPath>${external.lib}/jain-sip-sdp-1.2.2368.jar</systemPath>
 		</dependency>
 
 		<dependency>
