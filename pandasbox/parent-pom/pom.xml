@@ -49,11 +49,6 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.etrali.frameworks.jain-sip</groupId>
-			<artifactId>jain-sip-sdp</artifactId>
-			<version>${jain.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>log4j</groupId>
