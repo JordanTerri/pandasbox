@@ -1,6 +1,7 @@
 package org.pandasbox.commons.sip.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Properties;
 
@@ -85,15 +86,12 @@ public class SipStackHandlerTest {
 	
 	@Test
 	public void init_Success() throws ObjectInUseException, TransportNotSupportedException, InvalidArgumentException {
-		new Expectations() {
-			{
-				sipStack.createListeningPoint(anyString, 5060, ListeningPoint.UDP);
-				sipStack.createSipProvider((ListeningPoint)any); times = 1; result = sipProvider;
-			}
-		};
 		handler.init();
 		
-		assertEquals(sipProvider, handler.getSipProvider());
+		assertNotNull(handler.getSipStack());
+		assertNotNull(handler.getMessageFactory());
+		assertNotNull(handler.getHeaderFactory());
+		assertNotNull(handler.getAddressFactory());
 	}
 
 	@Test

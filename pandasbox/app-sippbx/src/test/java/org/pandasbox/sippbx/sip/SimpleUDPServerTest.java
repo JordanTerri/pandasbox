@@ -1,6 +1,4 @@
-package org.pandasbox.commons.sip.service;
-
-import java.util.TooManyListenersException;
+package org.pandasbox.sippbx.sip;
 
 import javax.sip.DialogTerminatedEvent;
 import javax.sip.IOExceptionEvent;
@@ -11,20 +9,22 @@ import javax.sip.SipProvider;
 import javax.sip.TimeoutEvent;
 import javax.sip.TransactionTerminatedEvent;
 import javax.sip.header.CallIdHeader;
+import javax.sip.header.ToHeader;
 import javax.sip.message.Request;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.pandasbox.commons.sip.config.SipProperties;
-import org.pandasbox.sippbx.sip.EchoServerSipListener;
+import org.pandasbox.commons.sip.service.SipStackHandler;
 
 import mockit.Deencapsulation;
 import mockit.Expectations;
 import mockit.Injectable;
+import mockit.Tested;
 
-public class EchoServerSipListenerTest {
+public class SimpleUDPServerTest {
 
-	EchoServerSipListener listener;
+	@Tested SimpleUDPServer listener;
 
 	@Injectable
 	RequestEvent requestEvent;
@@ -54,10 +54,13 @@ public class EchoServerSipListenerTest {
 	CallIdHeader callIdHeader;
 	
 	@Injectable
+	ToHeader toHeader;
+	
+	@Injectable
 	SipProvider sipProvider;
 	
 	@Injectable
-	SipStackHandler sipStack;
+	SipStackHandler sipStackHandler;
 	
 	@Injectable
 	SipProperties sipProperties;
@@ -66,29 +69,26 @@ public class EchoServerSipListenerTest {
 
 	@Before
 	public void setup() {
-		listener = new EchoServerSipListener();
-		Deencapsulation.setField(listener, sipStack);
-		Deencapsulation.setField(listener, sipProperties);
+		listener = new SimpleUDPServer();
+		
+		Deencapsulation.setField(listener, "sipStackHandler", sipStackHandler);
+		Deencapsulation.setField(listener, "sipProperties", sipProperties);
+
 		
 		new Expectations() {
 			{
 				requestEvent.getRequest(); result = request; minTimes = 0;
 				requestEvent.getServerTransaction(); result = serverTransaction; minTimes = 0;
 				request.getHeader(CallIdHeader.NAME); result = callIdHeader; minTimes = 0;
+				request.getHeader(ToHeader.NAME); result = toHeader; minTimes = 0;
 				callIdHeader.getCallId(); result = CALL_ID; minTimes = 0;
 			}
 		};
 	}
 
 	@Test
-	public void init() throws TooManyListenersException {
-		new Expectations() {
-			{
-				sipStack.getSipProvider(); times = 1; result = sipProvider;
-				sipProvider.addSipListener(listener); times = 1;
-			}
-		};
-		listener.init();
+	public void init() {
+		listener.initialization();
 	}
 
 	@Test

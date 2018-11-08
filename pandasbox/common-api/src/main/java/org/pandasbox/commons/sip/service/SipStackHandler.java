@@ -5,7 +5,6 @@ import java.net.UnknownHostException;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
-import javax.sip.ListeningPoint;
 import javax.sip.PeerUnavailableException;
 import javax.sip.SipFactory;
 import javax.sip.SipProvider;
@@ -82,9 +81,9 @@ public class SipStackHandler {
 			headerFactory = sipFactory.createHeaderFactory();
 			addressFactory = sipFactory.createAddressFactory();
 			messageFactory = sipFactory.createMessageFactory();
-			ListeningPoint lp = sipStack.createListeningPoint(serverAddress, sipProperties.getUdpPort().intValue(), ListeningPoint.UDP);
-
-			sipProvider = sipStack.createSipProvider(lp);
+			
+			//ListeningPoint lp = sipStack.createListeningPoint(serverAddress, sipProperties.getUdpPort().intValue(), ListeningPoint.UDP);
+			//sipProvider = sipStack.createSipProvider(lp);
 		} catch (Exception ex) {
 			LOGGER.info("Error initiating Sip Stack: {}", ex.getMessage(), ex);
 		}

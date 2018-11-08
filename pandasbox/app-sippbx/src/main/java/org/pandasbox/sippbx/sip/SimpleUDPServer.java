@@ -10,7 +10,6 @@ import javax.sip.IOExceptionEvent;
 import javax.sip.RequestEvent;
 import javax.sip.ResponseEvent;
 import javax.sip.ServerTransaction;
-import javax.sip.SipListener;
 import javax.sip.SipProvider;
 import javax.sip.TimeoutEvent;
 import javax.sip.Transaction;
@@ -27,48 +26,30 @@ import javax.sip.message.Request;
 import javax.sip.message.Response;
 
 import org.pandasbox.commons.sip.SipSession;
-import org.pandasbox.commons.sip.config.SipProperties;
-import org.pandasbox.commons.sip.service.SipStackHandler;
+import org.pandasbox.commons.sip.service.AbstractUDPSipListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * This class is a UAS template.
- *
- */
 @Service
-public class EchoServerSipListener implements SipListener {
+public class SimpleUDPServer extends AbstractUDPSipListener {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EchoServerSipListener.class);
-
-	@Autowired
-	SipProperties sipProperties;
-	
-	@Autowired
-	SipStackHandler sipStack;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	private final ConcurrentHashMap<String, SipSession> sessions = new ConcurrentHashMap<>();
 
 	@PostConstruct
-	public void init() {
-		LOGGER.info("Initiating Sip Stack");
-		try {
-			LOGGER.info("{}", sipProperties);
-			
-			SipProvider sipProvider = sipStack.getSipProvider();
-			sipProvider.addSipListener(this);
-		} catch (Exception ex) {
-			LOGGER.error("Error initiating sip listener: {}", ex.getMessage(), ex);
-		}
+	@Override
+	public void initialization() {
+		super.initialization();
+		logger.info("Oh man i'm listening on UDP:{}", sipProperties.getUdpPort());
 	}
 
 	@Override
 	public void processRequest(RequestEvent requestEvent) {
 		Request request = requestEvent.getRequest();
 		ServerTransaction serverTransactionId = requestEvent.getServerTransaction();
-		LOGGER.info("\n\nRequest {} received at {} with server transaction id {}", request.getMethod(),
+		logger.info("\n\nRequest {} received at {} with server transaction id {}", request.getMethod(),
 				sipProperties.getStackName(), serverTransactionId);
 
 		if (request.getMethod().equals(Request.INVITE)) {
@@ -79,14 +60,14 @@ public class EchoServerSipListener implements SipListener {
 			processBye(requestEvent, serverTransactionId);
 		} else {
 			// we should not be here
-			LOGGER.error("the following request is not supported {}", request);
+			logger.error("the following request is not supported {}", request);
 		}
 	}
 
 	@Override
 	public void processResponse(ResponseEvent responseEvent) {
 		// nothing to do
-		LOGGER.info("Received response {}", responseEvent.getResponse());
+		logger.info("Received response {}", responseEvent.getResponse());
 	}
 
 	/**
@@ -96,7 +77,7 @@ public class EchoServerSipListener implements SipListener {
 	 * @param serverTransaction
 	 */
 	public void processAck(final RequestEvent requestEvent, ServerTransaction serverTransaction) {
-		LOGGER.info("Echo Server: got an ACK! ");
+		logger.info("Echo Server: got an ACK! ");
 		SipProvider provider = (SipProvider) requestEvent.getSource();
 
 		CallIdHeader header = (CallIdHeader) requestEvent.getRequest().getHeader(CallIdHeader.NAME);
@@ -115,7 +96,7 @@ public class EchoServerSipListener implements SipListener {
 				dialog.sendRequest(ct);
 			}
 		} catch (Exception ex) {
-			LOGGER.error("error occured processing Acknoledgement for {}", dialog.getCallId(), ex);
+			logger.error("error occured processing Acknoledgement for {}", dialog.getCallId(), ex);
 		}
 	}
 
@@ -129,8 +110,8 @@ public class EchoServerSipListener implements SipListener {
 		SipProvider sipProvider = (SipProvider) requestEvent.getSource();
 		Request request = requestEvent.getRequest();
 		try {
-			LOGGER.info("Echo Server: got an Invite sending Trying {}", request);
-			MessageFactory messageFactory = sipStack.getMessageFactory();
+			logger.info("Echo Server: got an Invite sending Trying {}", request);
+			MessageFactory messageFactory = sipStackHandler.getMessageFactory();
 			Response response = messageFactory.createResponse(Response.RINGING, request);
 
 			ServerTransaction st = requestEvent.getServerTransaction();
@@ -143,10 +124,10 @@ public class EchoServerSipListener implements SipListener {
 
 			Response okResponse = messageFactory.createResponse(Response.OK, request);
 
-			AddressFactory addressFactory = sipStack.getAddressFactory();
-			Address address = addressFactory
-					.createAddress("EchoServer <sip:" + sipStack.getServerAddress() + ":" + sipProperties.getUdpPort() + ">");
-			HeaderFactory headerFactory = sipStack.getHeaderFactory();
+			AddressFactory addressFactory = sipStackHandler.getAddressFactory();
+			Address address = addressFactory.createAddress(
+					"EchoServer <sip:" + sipStackHandler.getServerAddress() + ":" + sipProperties.getUdpPort() + ">");
+			HeaderFactory headerFactory = sipStackHandler.getHeaderFactory();
 			ContactHeader contactHeader = headerFactory.createContactHeader(address);
 			response.addHeader(contactHeader);
 			ToHeader toHeader = (ToHeader) okResponse.getHeader(ToHeader.NAME);
@@ -159,14 +140,14 @@ public class EchoServerSipListener implements SipListener {
 			// sending response
 			session.setTransaction(st);
 			if (st.getState() != TransactionState.COMPLETED) {
-				LOGGER.info("Echo Server: Dialog state before {}: {}", Integer.valueOf(response.getStatusCode()),
+				logger.info("Echo Server: Dialog state before {}: {}", Integer.valueOf(response.getStatusCode()),
 						st.getDialog().getState());
 				st.sendResponse(okResponse);
-				LOGGER.info("Echo Server: Dialog state after {}: {}", Integer.valueOf(response.getStatusCode()),
+				logger.info("Echo Server: Dialog state after {}: {}", Integer.valueOf(response.getStatusCode()),
 						st.getDialog().getState());
 			}
 		} catch (Exception ex) {
-			LOGGER.error("error occured processing invite", ex);
+			logger.error("error occured processing invite", ex);
 		}
 	}
 
@@ -187,20 +168,19 @@ public class EchoServerSipListener implements SipListener {
 		if (sipSession == null) {
 			throw new IllegalStateException("Received an ACK for an unknown Call-Id");
 		}
-		
-		
+
 		Dialog dialog = sipSession.getDialog();
-		LOGGER.info("local party = {}", dialog.getLocalParty());
+		logger.info("local party = {}", dialog.getLocalParty());
 		try {
-			LOGGER.info("Echo Server:  got a bye sending OK.");
-			MessageFactory messageFactory = sipStack.getMessageFactory();
+			logger.info("Echo Server:  got a bye sending OK.");
+			MessageFactory messageFactory = sipStackHandler.getMessageFactory();
 			Response response = messageFactory.createResponse(200, request);
 			serverTransactionId.sendResponse(response);
-			LOGGER.info("Dialog State is " + serverTransactionId.getDialog().getState());
+			logger.info("Dialog State is " + serverTransactionId.getDialog().getState());
 
 			sessions.remove(sipSession.getCallId());
 		} catch (Exception ex) {
-			LOGGER.error("Error occured while ending session", ex);
+			logger.error("Error occured while ending session", ex);
 		}
 	}
 
@@ -213,30 +193,30 @@ public class EchoServerSipListener implements SipListener {
 			transaction = timeoutEvent.getClientTransaction();
 		}
 
-		LOGGER.info("state = " + transaction.getState());
-		LOGGER.info("dialog = " + transaction.getDialog());
-		LOGGER.info("dialogState = " + transaction.getDialog().getState());
-		LOGGER.info("Transaction Time out");
+		logger.info("state = " + transaction.getState());
+		logger.info("dialog = " + transaction.getDialog());
+		logger.info("dialogState = " + transaction.getDialog().getState());
+		logger.info("Transaction Time out");
 	}
 
 	@Override
 	public void processIOException(IOExceptionEvent exceptionEvent) {
-		LOGGER.error("IOException with source:{} host:{} port:{} protocol:{}", exceptionEvent.getSource(), exceptionEvent.getHost(),
-				Integer.valueOf(exceptionEvent.getPort()), exceptionEvent.getTransport());
+		logger.error("IOException with source:{} host:{} port:{} protocol:{}", exceptionEvent.getSource(),
+				exceptionEvent.getHost(), Integer.valueOf(exceptionEvent.getPort()), exceptionEvent.getTransport());
 	}
 
 	@Override
 	public void processTransactionTerminated(TransactionTerminatedEvent transactionTerminatedEvent) {
 		if (transactionTerminatedEvent.isServerTransaction())
-			LOGGER.warn("Transaction terminated event recieved" + transactionTerminatedEvent.getServerTransaction());
+			logger.warn("Transaction terminated event recieved" + transactionTerminatedEvent.getServerTransaction());
 		else
-			LOGGER.warn("Transaction terminated " + transactionTerminatedEvent.getClientTransaction());
+			logger.warn("Transaction terminated " + transactionTerminatedEvent.getClientTransaction());
 	}
 
 	@Override
 	public void processDialogTerminated(DialogTerminatedEvent dialogTerminatedEvent) {
 		Dialog d = dialogTerminatedEvent.getDialog();
-		LOGGER.info("Dialog terminated event recieved. Local party= {}", d.getLocalParty());
+		logger.info("Dialog terminated event recieved. Local party= {}", d.getLocalParty());
 	}
 
 }
