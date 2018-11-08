@@ -1,0 +1,11 @@
+#default values if not redefined by our application
+org:
+  pandasbox:
+    commons:
+      sip:
+        stack-name: pandasbox-default-stack
+        udp-port: 5060
+        tcp-port: 5060
+        tls-port: 5061
+        caller-sender-bye: true
+         

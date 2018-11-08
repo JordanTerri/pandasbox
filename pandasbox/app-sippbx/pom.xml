@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -8,58 +9,57 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>org.pandaka.box</groupId>
 	<artifactId>pandasbox-sippbx</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>panda-s-box sip-pbx module</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
 		<external.lib>${basedir}/ext-lib/</external.lib>
 		<jain-sip.version>1.2.2368</jain-sip.version>
 	</properties>
 
 	<dependencies>
-	
 		<dependency>
 			<groupId>org.pandaka.box</groupId>
 			<artifactId>pandasbox-common-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.pandaka.box</groupId>
-			<artifactId>pandasbox-recorder</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>jain-sip</groupId>
-			<artifactId>jain-sip-sdp</artifactId>
-			<scope>system</scope>
-			<version>${jain.version}</version>
-			<systemPath>${external.lib}/jain-sip-sdp-1.2.2368.jar</systemPath>
+	
+<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.sip</groupId>
+			<artifactId>jain-sip-ri</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
+			<groupId>org.jmockit</groupId>
+			<artifactId>jmockit</artifactId>
 		</dependency>
 	</dependencies>
 </project>

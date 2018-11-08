@@ -1,4 +1,4 @@
-package org.pandasbox.recorder.core;
+package org.pandasbox.recorder.service;
 
 public class RecorderService {
 

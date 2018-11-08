@@ -1,0 +1,8 @@
+org:
+  pandasbox:
+    commons:
+      sip:
+        stack-name: bob l'eponge
+        udp-port: 5062
+        tcp-port: 5062
+        tls-port: 5063 

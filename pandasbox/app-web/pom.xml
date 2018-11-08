@@ -8,39 +8,17 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>org.pandaka.box</groupId>
 	<artifactId>pandasbox-webapp</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>panda-s-box webapp module</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
-	
 		<dependency>
 			<groupId>org.pandaka.box</groupId>
 			<artifactId>pandasbox-common-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 	</dependencies>
 </project>
